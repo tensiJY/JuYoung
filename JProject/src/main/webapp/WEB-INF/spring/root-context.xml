@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.1.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- 	컨넥션 풀 등록 -->	
+<!-- 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl" />
+		<property name="username" value="juyoung" />
+		<property name="password" value="juyoung" />
+	</bean>  -->
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	    <property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"/>
+	    <property name="url" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:orcl" />
+	    <property name="username" value="juyoung"/>
+	    <property name="password" value="juyoung"/>
+ 	</bean> 
+	
+		<!-- 위의 컨넥션 풀 작업을 결과를 우리는 앞으로 myBatis라는 프레임 워크를 이용해서 처리할 예정이다 .
+		 myBatis 설정(마이바티스 등록 + 컨넥션 풀과 연결해 놓음)-->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- myBatis 환경 설정 파일을 무엇을 할지를 등록한다 . -->
+		<property name="configLocation" value="classpath:/myBatis-config.xml" />
+		<property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"/>
+		<!-- 사용할 컨넥션 풀과 연결한다 . -->
+		<property name="dataSource" ref="dataSource" />
+	</bean>  
+	
+		<!-- myBatis를 이용해서 컨넥션을 처리할 빈 처리(마이바티스에서 사용할 컨넥션을 빈처리) 
+		destroy-method="clearCache" 하지 않을 경우
+		WARN : org.springframework.beans.factory.support.DisposableBeanAdapter 
+		- Invocation of destroy method 'close' failed on bean with name 'sqlSession': 
+		java.lang.UnsupportedOperationException:
+		 Manual close is not allowed over a Spring managed SqlSession
+		 
+		 Oracle03SqlSessionFactoryTest 의 콘솔에서 WARN..이 뜬다. 하지만 clearCache를 할경우 warn 뜨지 않음. 
+		-->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" >
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+	
+	<context:component-scan base-package="com.juyoung.persistence" />
+	<context:component-scan base-package="com.juyoung.service" />
+</beans>
