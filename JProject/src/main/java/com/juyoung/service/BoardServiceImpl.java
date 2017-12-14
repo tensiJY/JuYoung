@@ -95,4 +95,19 @@ public class BoardServiceImpl implements BoardService{
 	public BoardVO searchView(int bno) throws Exception {
 		return bdao.searchView(bno);
 	}
+	
+	@Override
+	public List<BoardVO> replyList(int bno) throws Exception {
+		return bdao.replyList(bno);
+	}
+	
+	@Override
+	public void replyProc(BoardVO rvo) throws Exception {
+		bdao.replyProc(rvo);
+	}
+	
+	@Override
+	public void removeReply(int rrno) throws Exception {
+		bdao.removeReply(rrno);
+	}
 }

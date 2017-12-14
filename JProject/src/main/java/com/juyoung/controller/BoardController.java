@@ -36,6 +36,13 @@ public class BoardController {
 	@Inject
 	private BoardService bs;
 	
+	/**
+	 * 게시판 리스트
+	 * @param nowPage
+	 * @param model
+	 * @return 
+	 * @throws Exception
+	 */
 	@RequestMapping(value="/BoardList", method=RequestMethod.GET)
 	public String boardList(@RequestParam(value="nowPage", defaultValue="1") int nowPage,
 			Model model) throws Exception{
@@ -95,7 +102,9 @@ public class BoardController {
 		logger.info(" boardView : " + bno);
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("BoardVO" , bs.boardView(bno));
-		
+		List<BoardVO> rvo = bs.replyList(bno);
+		System.out.println(rvo.size());
+		model.addAttribute("RLIST", rvo);
 		return "Board/BoardView";
 	}
 	
@@ -170,5 +179,24 @@ public class BoardController {
 		svo.setNowPage(nowPage);
 		model.addAttribute("BoardVO", svo);		
 		return "Board/SearchView";
+	}
+	
+	
+	@RequestMapping("/ReplyProc")
+	public String replyProc(@ModelAttribute("bvo")BoardVO rvo, RedirectAttributes rttr)throws Exception{
+		bs.replyProc(rvo);
+		rttr.addFlashAttribute("MSG", "RSUCCESS1");
+		rttr.addAttribute("nowPage", rvo.getNowPage());
+		rttr.addAttribute("bno", rvo.getBno());
+		return "redirect:../Board/BoardView.do";
+	}
+	
+	@RequestMapping("/RemoveReply")
+	public String removeReply(@ModelAttribute("bvo")BoardVO rvo, RedirectAttributes rttr)throws Exception{
+		bs.removeReply(rvo.getRrno());
+		rttr.addAttribute("nowPage", rvo.getNowPage());
+		rttr.addAttribute("bno", rvo.getBno());
+		rttr.addFlashAttribute("MSG", "RSUCCESS3");
+		return "redirect:../Board/BoardView.do";
 	}
 }

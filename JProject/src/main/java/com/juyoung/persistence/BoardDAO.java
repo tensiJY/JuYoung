@@ -27,5 +27,11 @@ public interface BoardDAO {
 
 	public BoardVO searchView(int bno) throws Exception;
 
+	public List<BoardVO> replyList(int bno) throws Exception;
+
+	public void replyProc(BoardVO rvo) throws Exception;
+
+	public void removeReply(int rrno) throws Exception;
+
 	
 }

@@ -18,7 +18,16 @@
 		b_content as bcontent, b_writer as bwriter,
 		b_regdate as bregdate, b_viewcnt as bviewcnt
  	</sql>
- 	
+	<!--  	private int rrno;
+	private int rreplytext;
+	private int rreplyer;
+	private Date rregdate;
+	private Date rrupdatedate;
+	-->
+	<sql id="reply">
+		R_NO AS rrno, R_REPLYtext as rreplytext,
+		r_replyer as rreplyer, r_updatedate as rrupdatedate
+	</sql> 	
  	<select id="count"  resultType="int">
  		SELECT
  			COUNT(B_NO)
@@ -147,4 +156,17 @@
 		FROM tbl_board
 			WHERE B_NO = #{bno}	
 	</select>
+	
+
+	<select id="replyList" parameterType="int" resultType="bvo">
+		select <include refid="reply"/> from tbl_reply where b_no = #{bno} order by r_no desc
+	</select>
+	
+	<insert id="replyProc" parameterType="bvo">
+		insert into tbl_reply values((select nvl(max(r_no),0)+1 from tbl_reply), #{bno}, #{rreplytext}, #{rreplyer}, SYSDATE, SYSDATE)
+	</insert>
+	
+	<delete id="removeReply" parameterType="int">
+		delete from tbl_reply where r_no = #{rrno} 
+	</delete>
 </mapper> 

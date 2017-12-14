@@ -16,7 +16,54 @@ public class BoardVO {
 	private String word;
 	
 	private int rcnt;
-		
+	
+	private int rrno;
+	private String rreplytext;
+	private String rreplyer;
+	private Date rregdate;
+	private Date rrupdatedate;
+	
+	
+	
+	public int getRrno() {
+		return rrno;
+	}
+
+	public void setRrno(int rrno) {
+		this.rrno = rrno;
+	}
+
+	public String getRreplytext() {
+		return rreplytext;
+	}
+
+	public void setRreplytext(String rreplytext) {
+		this.rreplytext = rreplytext;
+	}
+
+	public String getRreplyer() {
+		return rreplyer;
+	}
+
+	public void setRreplyer(String rreplyer) {
+		this.rreplyer = rreplyer;
+	}
+
+	public Date getRregdate() {
+		return rregdate;
+	}
+
+	public void setRregdate(Date rregdate) {
+		this.rregdate = rregdate;
+	}
+
+	public Date getRrupdatedate() {
+		return rrupdatedate;
+	}
+
+	public void setRrupdatedate(Date rrupdatedate) {
+		this.rrupdatedate = rrupdatedate;
+	}
 
 	public int getRcnt() {
 		return rcnt;

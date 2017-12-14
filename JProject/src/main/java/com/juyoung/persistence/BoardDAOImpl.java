@@ -77,4 +77,19 @@ public class BoardDAOImpl implements BoardDAO{
 	public BoardVO searchView(int bno) throws Exception {
 		return session.selectOne(namespace+".searchView", bno);
 	}
+	
+	@Override
+	public List<BoardVO> replyList(int bno) throws Exception {
+		return session.selectList(namespace+".replyList", bno);
+	}
+	
+	@Override
+	public void replyProc(BoardVO rvo) throws Exception {
+		session.insert(namespace+".replyProc", rvo);
+	}
+	
+	@Override
+	public void removeReply(int rrno) throws Exception {
+		session.delete(namespace+".removeReply", rrno);
+	}
 }
