@@ -28,12 +28,13 @@
  	
  	
  	<select id="list" 	parameterType="hmap" resultType="bvo">
-		select * from
-	(select 
-		rownum as rno, 
-		t.*
-		from
-	(select <include refid="base"/> from tbl_board order by b_no desc ) t ) where rno between #{START} and #{END}	
+	select * from(
+                select rownum as rno, t.* from
+                    (select <include refid="base"/> , nvl(r.cnt, 0) as rcnt from TBL_BOARD , 
+                        (select b_no as bno , count(*) as cnt from tbl_reply group by b_no) r 
+                            where b_no = r.bno(+) order by b_no desc
+                    )t
+             ) where rno between #{START}  and  #{END}	
 	</select>
 	
 	<insert id="insert" parameterType="bvo">

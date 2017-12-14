@@ -15,8 +15,16 @@ public class BoardVO {
 	private String search;
 	private String word;
 	
-	
-	
+	private int rcnt;
+		
+
+	public int getRcnt() {
+		return rcnt;
+	}
+
+	public void setRcnt(int rcnt) {
+		this.rcnt = rcnt;
+	}
 
 	public int getNowPage() {
 		return nowPage;

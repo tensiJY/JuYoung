@@ -68,14 +68,14 @@
 		<td>작성자</td>
 		<td>제목</td>
 		<td>작성일</td>
-		<td>조회수</td>
+		<td>조회수/댓글수</td>
 	</tr>
 	<c:forEach var="BoardVO" items="${BLIST}">
 		<tr>
 			<td>${BoardVO.bwriter}</td>
 			<td><a href="../Board/BoardView.do?bno=${BoardVO.bno}&nowPage=${PINFO.nowPage}">${BoardVO.btitle}</a></td>
 			<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${BoardVO.bregdate}"/></td>
-			<td>${BoardVO.bviewcnt}</td>
+			<td>[${BoardVO.bviewcnt}] [${BoardVO.rcnt}]</td>
 		</tr>
 	</c:forEach>
 </table>
