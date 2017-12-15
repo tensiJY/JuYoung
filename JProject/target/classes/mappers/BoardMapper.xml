@@ -192,8 +192,29 @@
 					</if>
 				</if>
 			</if>
+			
+			<if test="bwriter == null and btitle !=null">
+				 b_title like '%'|| #{btitle} || '%' 				
+					<if test="bcontent !=null">
+						and b_content like '%' || #{bcontent} || '%'
+					</if>
+			</if>
 			 
+			 <if test="bwriter == null and btitle ==null and bcontent !=null">
+			 	b_content like '%' || #{bcontent} || '%'
+			 </if>
 			 
+			 <if test="sdate != null and edate != null">
+			 	b_regdate between #{sdate} and #{edate}
+			 </if>
+			 
+			 <if test="sdate != null and edate == null">
+			 	b_regdate >= #{sdate}
+			 </if>
+			 
+			 <if test="sdate == null and edate != null">
+			 	b_regdate <![CDATA[<=]]> #{edate}
+			 </if>
 			 order by b_no desc
 	</select>
 </mapper> 

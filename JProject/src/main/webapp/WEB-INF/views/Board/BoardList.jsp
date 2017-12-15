@@ -60,11 +60,13 @@
 				
 				var sdate = $("#sdate").val();
 				if( !(sdate == "" || sdate.length == 0 || sdate ==null)){
+					sdate=sdate.replace(/-/g, "");
 					check += 'sdate=' + sdate + '&'; 	
 				}
 				
 				var edate = $("#edate").val();
 				if( !(edate == "" || edate.length == 0 || edate ==null)){
+					edate=edate.replace(/-/g, "");
 					check += 'edate=' + edate + '&';	
 				}
 				

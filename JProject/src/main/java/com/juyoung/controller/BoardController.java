@@ -212,6 +212,7 @@ public class BoardController {
 	
 	@RequestMapping("/Msearch")
 	public String mSearch(@ModelAttribute("cvo")BoardVO cvo)throws Exception{
+		System.out.println(cvo.getSdate());
 		List<BoardVO> cList = bs.mSearch(cvo);
 		System.out.println(cList.size());
 		return "";
