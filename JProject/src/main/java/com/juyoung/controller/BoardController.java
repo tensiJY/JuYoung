@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.juyoung.domain.BoardVO;
@@ -200,12 +201,19 @@ public class BoardController {
 		return "redirect:../Board/BoardView.do";
 	}
 	
-	@RequestMapping("ReplyModify")
+	@RequestMapping("/ReplyModify")
 	public String replyModify(@ModelAttribute("rvo")BoardVO rvo, RedirectAttributes rttr)throws Exception{
 		bs.replyModify(rvo);
 		rttr.addAttribute("nowPage", rvo.getNowPage());
 		rttr.addAttribute("bno", rvo.getBno());
 		rttr.addFlashAttribute("MSG", "RSUCCESS2");
 		return "redirect:../Board/BoardView.do";
+	}
+	
+	@RequestMapping("/Msearch")
+	public String mSearch(@ModelAttribute("cvo")BoardVO cvo)throws Exception{
+		List<BoardVO> cList = bs.mSearch(cvo);
+		System.out.println(cList.size());
+		return "";
 	}
 }

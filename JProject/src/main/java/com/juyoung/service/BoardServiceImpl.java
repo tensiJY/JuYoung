@@ -115,4 +115,9 @@ public class BoardServiceImpl implements BoardService{
 	public void replyModify(BoardVO rvo) throws Exception {
 		bdao.replyModify(rvo);
 	}
+	
+	@Override
+	public List<BoardVO> mSearch(BoardVO cvo) throws Exception {
+		return bdao.mSearch(cvo);
+	}
 }

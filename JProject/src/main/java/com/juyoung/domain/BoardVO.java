@@ -23,8 +23,28 @@ public class BoardVO {
 	private Date rregdate;
 	private Date rrupdatedate;
 	
+	private Date sdate;
+	private Date edate;
 	
 	
+	
+	
+	public Date getSdate() {
+		return sdate;
+	}
+
+	public void setSdate(Date sdate) {
+		this.sdate = sdate;
+	}
+
+	public Date getEdate() {
+		return edate;
+	}
+
+	public void setEdate(Date edate) {
+		this.edate = edate;
+	}
+
 	public int getRrno() {
 		return rrno;
 	}

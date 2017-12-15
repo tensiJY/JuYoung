@@ -176,4 +176,24 @@
 			R_UPDATEDATE= sysdate 
 			where R_NO=#{rrno}
 	</update>
+	
+	<select id="mSearch" parameterType="bvo" resultType="bvo">
+		SELECT <include refid="base"/>
+		from
+			TBL_Board
+			where
+			<if test="bwriter != null">
+				b_writer like '%'|| #{bwriter} || '%' 
+				
+				<if test="btitle != null">
+					 and b_title like '%'|| #{btitle} || '%' 				
+					<if test="bcontent !=null">
+						and b_content like '%' || #{bcontent} || '%'
+					</if>
+				</if>
+			</if>
+			 
+			 
+			 order by b_no desc
+	</select>
 </mapper> 

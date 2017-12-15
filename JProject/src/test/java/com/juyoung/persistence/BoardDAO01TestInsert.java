@@ -25,11 +25,12 @@ public class BoardDAO01TestInsert {
 	@Test
 	public void testInsert()throws Exception{
 		logger.info("	insertTest	");
+		for(int i=0; i<1500; i++){
 		BoardVO bvo = new BoardVO();
-		bvo.setBtitle("제목");
-		bvo.setBcontent("내용");
-		bvo.setBwriter("작성자");
-		bdao.insert(bvo);
+		bvo.setBtitle("제목"+i);
+		bvo.setBcontent("내용"+i);
+		bvo.setBwriter("pavvv");
+		bdao.insert(bvo);}
 	}
 	
 	

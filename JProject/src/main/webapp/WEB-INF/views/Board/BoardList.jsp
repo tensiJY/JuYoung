@@ -32,7 +32,53 @@
 				$(location).attr('href', '../Board/SearchList.do?search='+search+"&word="+word+'&nowPage='+nowPage);
 				
 			});	
-		})
+						
+			
+			$("#chBtn").on('click', function(){
+				var check = "../Board/Msearch.do?";
+				var bwriter = $("#bwriter").val();
+				var btitle = $("#btitle").val();
+				var bcontent = $("#bcontent").val();
+								
+				$('input[name=chb]:checked').each(function(index, data) { 
+			       var temp = $(data).val();
+					if(temp == 1){
+			    	   if(!(bwriter== "" || bwriter.length==0 || bwriter ==null)){
+			    		   check += 'bwriter='+ bwriter + '&';
+			    	   }
+			    	   		  
+			       }else if(temp == 2){
+			    	   if(!(btitle == "" || btitle.length==0 || btitle ==null)){
+			    		   check += 'btitle='+ btitle  + '&';   
+			    	   }
+			       }else if(temp == 3 ){
+			    	   if(!(bcontent == "" || bcontent.length==0 || bcontent ==null)){
+			    		   check += 'bcontent='+ bcontent  + '&';
+			    	   }	
+			       }
+			   });
+				
+				var sdate = $("#sdate").val();
+				if( !(sdate == "" || sdate.length == 0 || sdate ==null)){
+					check += 'sdate=' + sdate + '&'; 	
+				}
+				
+				var edate = $("#edate").val();
+				if( !(edate == "" || edate.length == 0 || edate ==null)){
+					check += 'edate=' + edate + '&';	
+				}
+				
+				var cnt = check.lastIndexOf("&");
+				check = check.substring(0,cnt);
+				
+				$(location).attr('href', check);
+				
+ 			});//
+ 			
+ 			$("#dateReset").on('click', function(){
+ 				$("#sdate").val('');
+ 			})
+		})// document end
 		
 		var msg = '${MSG}';
 		if(msg=='SUCCESS1'){
@@ -46,7 +92,7 @@
 </head>
 <body>
 <%-- 검색 처리 --%>
-<table align="center">
+<table align="center" >
 	<tr>
 		<td>
 			<select id="search">
@@ -62,8 +108,39 @@
 	</tr>
 </table>
 
+<%-- 선택 조건 --%>
+
+	<table  align="center" border="1" width=700>
+		<tr>
+			<td> 
+				 <input type="checkbox" id="chb" name="chb" value='1'> 작성자
+				 <input type="text" id="bwriter" name="bwriter"> 
+			</td>
+			<td> 
+				 <input type="checkbox" id="chb" name="chb" value='2'> 제목
+				 <input type="text" id="btitle" name="btitle"> 
+			</td>
+			<td> 
+				 <input type="checkbox" id="chb" name="chb" value='3'> 내용
+				 <input type="text" id="bcontent" name="bcontent"> 
+			</td>
+			
+		</tr>
+		<tr>
+			<td colspan=3>
+				 <input type="date" id="sdate" name="sdate"> ~ <input type="date" id="edate" name="edate">
+				 <input type="button" id="dateReset" name="dateReset" value="날짜초기화">
+			</td>
+		</tr>
+		<tr>
+			<td colspan=4><input type="button" id="chBtn" name="chBtn" value="검색"></td>
+		</tr>
+	
+	</table>
+
+
 <%-- 리스트 처리 --%>
-<table align="center" border="1">
+<table align="center" border="1" width=700>
 	<tr>
 		<td>작성자</td>
 		<td>제목</td>

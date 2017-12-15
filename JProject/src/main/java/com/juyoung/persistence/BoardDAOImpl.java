@@ -97,4 +97,9 @@ public class BoardDAOImpl implements BoardDAO{
 	public void replyModify(BoardVO rvo) throws Exception {
 		session.update(namespace+".replyModify", rvo);
 	}
+	
+	@Override
+	public List<BoardVO> mSearch(BoardVO cvo) throws Exception {
+		return session.selectList(namespace+".mSearch", cvo);
+	}
 }
