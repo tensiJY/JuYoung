@@ -199,4 +199,13 @@ public class BoardController {
 		rttr.addFlashAttribute("MSG", "RSUCCESS3");
 		return "redirect:../Board/BoardView.do";
 	}
+	
+	@RequestMapping("ReplyModify")
+	public String replyModify(@ModelAttribute("rvo")BoardVO rvo, RedirectAttributes rttr)throws Exception{
+		bs.replyModify(rvo);
+		rttr.addAttribute("nowPage", rvo.getNowPage());
+		rttr.addAttribute("bno", rvo.getBno());
+		rttr.addFlashAttribute("MSG", "RSUCCESS2");
+		return "redirect:../Board/BoardView.do";
+	}
 }

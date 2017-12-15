@@ -110,4 +110,9 @@ public class BoardServiceImpl implements BoardService{
 	public void removeReply(int rrno) throws Exception {
 		bdao.removeReply(rrno);
 	}
+	
+	@Override
+	public void replyModify(BoardVO rvo) throws Exception {
+		bdao.replyModify(rvo);
+	}
 }

@@ -33,5 +33,6 @@ public interface BoardDAO {
 
 	public void removeReply(int rrno) throws Exception;
 
-	
+	public void replyModify(BoardVO rvo) throws Exception;
+
 }

@@ -14,7 +14,7 @@
 			if(msg=='RSUCCESS1'){
 				alert('댓글을 작성하였습니다');
 			}else if(msg=='RSUCCESS2'){
-				
+				alert('정상적으로 수정하였습니다.');	
 			}else if(msg=='RSUCCESS3'){
 				alert('댓글을 삭제하였습니다.')
 			}
@@ -59,6 +59,8 @@
 			
 			//	수정하기
 			$(".rmBtn").on('click', function(){
+				/* var abcd= $(this).parents().find('.aa').attr(); */
+				
 				$(this).parents().next().children().slideToggle();			
 				
 			})
@@ -66,6 +68,7 @@
 			$(".rmBtn2").on('click', function(){
 				var frm = $(this).parents('form');
 				frm.attr('method', 'post');
+				frm.attr('action', '../Board/ReplyModify.do').submit();
 				
 			})
 			
@@ -154,7 +157,7 @@
 				<td><fmt:formatDate pattern="yyyy.MM.dd HH:mm"   value="${data.rrupdatedate}"/></td>
 			</tr>
 			<tr>
-				<td colspan="3"><textarea cols="90" readonly>${data.rreplytext}</textarea></td>
+				<td colspan="3"><textarea cols="90" readonly class='aa'>${data.rreplytext}</textarea></td>
 			</tr>
 			<tr>
 				<td colspan="3">
@@ -165,7 +168,9 @@
 		</table>
 		
 		<form>
-			<input type="hidden">
+			<input type="hidden" id="rrno" name="rrno" value="${data.rrno}">
+			<input type="hidden" value='${BoardVO.bno}' id="bno" name="bno">
+		<input type="hidden" value='${nowPage}' id="nowPage" name="nowPage">
 			<table style="display: none; border-color: red;" align="center" border="1" width='700' >
 				<tr>
 					<td width="200">작성자</td>

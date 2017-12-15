@@ -36,6 +36,6 @@ public interface BoardService {
 
 	public void removeReply(int rrno) throws Exception;
 	
-
+	public void replyModify(BoardVO rvo) throws Exception;
 	
 }

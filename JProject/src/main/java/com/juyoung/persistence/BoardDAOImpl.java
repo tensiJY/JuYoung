@@ -92,4 +92,9 @@ public class BoardDAOImpl implements BoardDAO{
 	public void removeReply(int rrno) throws Exception {
 		session.delete(namespace+".removeReply", rrno);
 	}
+	
+	@Override
+	public void replyModify(BoardVO rvo) throws Exception {
+		session.update(namespace+".replyModify", rvo);
+	}
 }
