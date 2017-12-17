@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="User">
+
+<!-- 	
+	u_no number not null,
+	u_id varchar2(50) unique,
+	u_pw varchar2(50) not null,
+	u_name varchar2(100) not null,
+	u_point number default 0,
+	constraint pk_uno primary key (u_no) 
+-->
+	<select id="login" resultType="uvo">
+		select u_no as mno, u_id as mid, u_pw as mpw, u_name as mname,
+		u_point as mpoint from tbl_user where u_id=#{mid} and u_pw=#{mpw} 
+	</select>
+	
+</mapper>  

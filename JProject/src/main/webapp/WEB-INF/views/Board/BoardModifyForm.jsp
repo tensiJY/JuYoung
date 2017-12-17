@@ -32,7 +32,9 @@
 		</tr>
 		<tr>
 			<td colspan=4>
-				<input type="button" id="mBtn" name="mBtn" value="수정하기">
+				<c:if test="${USER.mid == BoardVO.bwriter}">
+					<input type="button" id="mBtn" name="mBtn" value="수정하기">
+				</c:if>
 			</td>
 		</tr>
 	</table>

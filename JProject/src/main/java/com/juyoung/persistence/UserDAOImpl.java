@@ -1,0 +1,24 @@
+package com.juyoung.persistence;
+
+import javax.inject.Inject;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
+
+import com.juyoung.domain.UserVO;
+import com.juyoung.dto.LoginDTO;
+
+@Repository
+public class UserDAOImpl implements UserDAO{
+	
+	
+	@Inject
+	private SqlSession session;
+	
+	private String namespace = "User";
+	
+	@Override
+	public UserVO login(LoginDTO ldto) throws Exception {
+		return session.selectOne(namespace+".login", ldto);
+	}
+}

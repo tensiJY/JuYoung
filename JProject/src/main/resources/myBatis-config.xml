@@ -16,5 +16,6 @@
 	<typeAliases>
 		<typeAlias type="java.util.HashMap" alias="hmap"/>
 		<typeAlias type="com.juyoung.domain.BoardVO" alias="bvo"/>
+		<typeAlias type="com.juyoung.domain.UserVO" alias="uvo"/>
 	</typeAliases>
 </configuration>

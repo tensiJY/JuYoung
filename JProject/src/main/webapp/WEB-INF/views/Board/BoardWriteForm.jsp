@@ -29,7 +29,7 @@
 	<table border='1' align='center'>
 		<tr>
 			<td>작성자</td>
-			<td><input type="text" id="bwriter" name="bwriter"></td>
+			<td><input type="text" id="bwriter" name="bwriter" value="${USER.mid}" readonly></td>
 			<td>제목</td>
 			<td><input type="text" id="btitle" name="btitle"></td>
 		</tr>

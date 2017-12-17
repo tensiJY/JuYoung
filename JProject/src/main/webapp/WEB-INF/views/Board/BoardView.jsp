@@ -109,8 +109,11 @@
 			</tr>
 			<tr>
 				<td colspan=4>
+				<c:if test="${USER.mid == BoardVO.bwriter}">
 					<input type="button" value="수정하기" id="modifyBtn" name="modifyBtn">
 					<input type="button" value="삭제하기" id="removeBtn" name="removeBtn">
+				</c:if>
+					
 					<input type="button" value="목록" id="listBtn" name="listBtn">
 					<input type="button" value="댓글쓰기폼" id="rfBtn" name="rfBtn">
 				</td>
