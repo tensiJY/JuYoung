@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.juyoung.domain.BoardVO;
@@ -67,7 +66,7 @@ public class BoardController {
 	 * @return Board/boardWriteForm.jsp
 	 */
 	@RequestMapping(value="/BoardWriteForm", method=RequestMethod.GET)
-	public String boardWriteForm(@RequestParam(value="nowPage")int nowPage, Model model){
+	public String boardWriteForm(@RequestParam(value="nowPage", defaultValue="1")int nowPage, Model model){
 		logger.info("	controller	Board/BoardWriteForm");
 		model.addAttribute("nowPage", nowPage);
 		return "Board/BoardWriteForm";
@@ -86,7 +85,7 @@ public class BoardController {
 		bs.insert(bvo);
 		rttr.addAttribute("nowPage", bvo.getNowPage());
 		rttr.addFlashAttribute("MSG", "SUCCESS1");
-		return "redirect:../Board/BoardList.do";
+		return "redirect:../Board/BoardList.park";
 	}
 	
 	/**
@@ -98,7 +97,7 @@ public class BoardController {
 	 */
 	@RequestMapping(value="/BoardView", method=RequestMethod.GET)
 	public String boardView(@RequestParam(value="bno") int bno,
-			@RequestParam(value="nowPage", required=false) int nowPage,
+			@RequestParam(value="nowPage", defaultValue="1") int nowPage,
 			Model model)throws Exception{
 		logger.info(" boardView : " + bno);
 		model.addAttribute("nowPage", nowPage);
@@ -117,7 +116,7 @@ public class BoardController {
 		bs.remove(bno);
 		rttr.addAttribute("nowPage", nowPage);
 		rttr.addFlashAttribute("MSG", "SUCCESS2");
-		return "redirect:../Board/BoardList.do";
+		return "redirect:../Board/BoardList.park";
 	}
 	
 	@RequestMapping(value="/ModifyForm", method=RequestMethod.GET)
@@ -136,20 +135,22 @@ public class BoardController {
 		bs.modifyProc(bvo);
 		rttr.addAttribute("nowPage", bvo.getNowPage());
 		rttr.addFlashAttribute("MSG", "SUCCESS3");
-		return "redirect:../Board/BoardList.do"; 
+		return "redirect:../Board/BoardList.park"; 
 	}
 	
 	@RequestMapping(value="/SearchList")
-	public String searchList(@ModelAttribute("bvo")BoardVO bvo,
-							 @RequestParam(value="nowPage", defaultValue="1")int nowPage,
-							Model model)throws Exception{
+	public String searchList(@RequestParam(value="nowPage", defaultValue="1")int nowPage,
+							 @ModelAttribute("bvo")BoardVO bvo, Model model)throws Exception{
 		
+				
 		String word = bvo.getWord();
 		if(word== null){
 			word = "ALL";
 			bvo.setWord(word);
 		}
-				
+		
+		
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("SEARCH", bvo.getSearch());
 		map.put("WORD", bvo.getWord());
@@ -189,7 +190,7 @@ public class BoardController {
 		rttr.addFlashAttribute("MSG", "RSUCCESS1");
 		rttr.addAttribute("nowPage", rvo.getNowPage());
 		rttr.addAttribute("bno", rvo.getBno());
-		return "redirect:../Board/BoardView.do";
+		return "redirect:../Board/BoardView.park";
 	}
 	
 	@RequestMapping("/RemoveReply")
@@ -198,7 +199,7 @@ public class BoardController {
 		rttr.addAttribute("nowPage", rvo.getNowPage());
 		rttr.addAttribute("bno", rvo.getBno());
 		rttr.addFlashAttribute("MSG", "RSUCCESS3");
-		return "redirect:../Board/BoardView.do";
+		return "redirect:../Board/BoardView.park";
 	}
 	
 	@RequestMapping("/ReplyModify")
@@ -207,7 +208,7 @@ public class BoardController {
 		rttr.addAttribute("nowPage", rvo.getNowPage());
 		rttr.addAttribute("bno", rvo.getBno());
 		rttr.addFlashAttribute("MSG", "RSUCCESS2");
-		return "redirect:../Board/BoardView.do";
+		return "redirect:../Board/BoardView.park";
 	}
 	
 	@RequestMapping("/Msearch")

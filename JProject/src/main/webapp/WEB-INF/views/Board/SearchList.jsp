@@ -27,7 +27,7 @@
 				
 				word = $.trim(word);
 				
-				$(location).attr('href', '../Board/SearchList.do?search='+search+"&word="+word);
+				$(location).attr('href', '../Board/SearchList.park?search='+search+"&word="+word);
 				
 			});	
 		});
@@ -64,7 +64,7 @@
 			<tr>
 				<td>${data.bno}</td>
 				<td>${data.bwriter}</td>
-				<td><a href="../Board/SearchView.do?bno=${data.bno}&nowPage=${PINFO.nowPage}&search=${BoardVO.search}&word=${BoardVO.word}">${data.btitle}</a></td>
+				<td><a href="../Board/SearchView.park?bno=${data.bno}&nowPage=${PINFO.nowPage}&search=${BoardVO.search}&word=${BoardVO.word}">${data.btitle}</a></td>
 				<td>${data.bregdate}</td>
 				<td>${data.bviewcnt}</td>
 			</tr>
@@ -87,10 +87,10 @@
 					<li><a href="#">[이전]</a></li>
 				</c:if>
 				<c:if test="${PINFO.startPage ne 1}">
-					<li><a href='../Board/SearchList.do?nowPage=${PINFO.startPage - 1}&search=${BoardVO.search}&word=${BoardVO.word}'>[이전]</a></li>
+					<li><a href='../Board/SearchList.park?nowPage=${PINFO.startPage - 1}&search=${BoardVO.search}&word=${BoardVO.word}'>[이전]</a></li>
 				</c:if> 
 				<c:forEach var="page" begin="${PINFO.startPage}" end="${PINFO.endPage}">
-					<li><a href="../Board/SearchList.do?nowPage=${page}&search=${BoardVO.search}&word=${BoardVO.word}">[${page}]</a></li>
+					<li><a href="../Board/SearchList.park?nowPage=${page}&search=${BoardVO.search}&word=${BoardVO.word}">[${page}]</a></li>
 				</c:forEach>
 						
 				<c:if test="${PINFO.endPage eq PINFO.totalPage}">
@@ -98,7 +98,7 @@
 				</c:if>
 						
 				<c:if test="${PINFO.endPage ne PINFO.totalPage}">
-					<li><a href="../Board/SearchList.do?nowPage=${PINFO.endPage + 1}&search=${BoardVO.search}&word=${BoardVO.word}">[다음]</a></li>
+					<li><a href="../Board/SearchList.park?nowPage=${PINFO.endPage + 1}&search=${BoardVO.search}&word=${BoardVO.word}">[다음]</a></li>
 				</c:if>
 			</ul>
 		</td></tr>

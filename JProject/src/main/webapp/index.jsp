@@ -10,6 +10,6 @@
 </head>
 <body>
  
-<a href="./Board/BoardList.do">게시판</a>
+<a href="./Board/BoardList.park">게시판</a>
 </body>
 </html>

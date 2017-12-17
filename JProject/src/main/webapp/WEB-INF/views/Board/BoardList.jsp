@@ -19,7 +19,7 @@
 		$(function(){
 			$("#wBtn").on('click', function(){
 				var nowPage = $('#nowPage').val();
-				$(location).attr('href', '../Board/BoardWriteForm.do?nowPage='+nowPage);
+				$(location).attr('href', '../Board/BoardWriteForm.park?nowPage='+nowPage);
 			});
 			
 			$("#sBtn").on('click', function(){
@@ -29,13 +29,14 @@
 				
 				word = $.trim(word);
 				
-				$(location).attr('href', '../Board/SearchList.do?search='+search+"&word="+word+'&nowPage='+nowPage);
+				$(location).attr('href', '../Board/SearchList.park?search='+search+"&word="+word);
+			
 				
 			});	
 						
 			
 			$("#chBtn").on('click', function(){
-				var check = "../Board/Msearch.do?";
+				var check = "../Board/Msearch.park?";
 				var bwriter = $("#bwriter").val();
 				var btitle = $("#btitle").val();
 				var bcontent = $("#bcontent").val();
@@ -152,7 +153,7 @@
 	<c:forEach var="BoardVO" items="${BLIST}">
 		<tr>
 			<td>${BoardVO.bwriter}</td>
-			<td><a href="../Board/BoardView.do?bno=${BoardVO.bno}&nowPage=${PINFO.nowPage}">${BoardVO.btitle}</a></td>
+			<td><a href="../Board/BoardView.park?bno=${BoardVO.bno}&nowPage=${PINFO.nowPage}">${BoardVO.btitle}</a></td>
 			<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${BoardVO.bregdate}"/></td>
 			<td>[${BoardVO.bviewcnt}] [${BoardVO.rcnt}]</td>
 		</tr>
@@ -168,10 +169,10 @@
 			<li><a href="#">[이전]</a></li>
 		</c:if>
 		<c:if test="${PINFO.startPage ne 1}">
-			<li><a href='../Board/BoardList.do?nowPage=${PINFO.startPage - 1}'>[이전]</a></li>
+			<li><a href='../Board/BoardList.park?nowPage=${PINFO.startPage - 1}'>[이전]</a></li>
 		</c:if> 
 		<c:forEach var="page" begin="${PINFO.startPage}" end="${PINFO.endPage}">
-			<li><a href="../Board/BoardList.do?nowPage=${page}">[${page}]</a></li>
+			<li><a href="../Board/BoardList.park?nowPage=${page}">[${page}]</a></li>
 		</c:forEach>
 				
 		<c:if test="${PINFO.endPage eq PINFO.totalPage}">
@@ -179,7 +180,7 @@
 		</c:if>
 				
 		<c:if test="${PINFO.endPage ne PINFO.totalPage}">
-			<li><a href="../Board/BoardList.do?nowPage=${PINFO.endPage + 1}">[다음]</a></li>
+			<li><a href="../Board/BoardList.park?nowPage=${PINFO.endPage + 1}">[다음]</a></li>
 		</c:if>
 	</ul>
 	</td></tr>

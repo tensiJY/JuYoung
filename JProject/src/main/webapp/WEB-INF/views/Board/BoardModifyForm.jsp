@@ -11,7 +11,7 @@
 		$(function(){
 			$("#mBtn").on('click', function(){
 				$("#mFrm").attr('method', 'post');
-				$("#mFrm").attr('action', '../Board/ModifyProc.do').submit();
+				$("#mFrm").attr('action', '../Board/ModifyProc.park').submit();
 			})
 		})
 	</script>

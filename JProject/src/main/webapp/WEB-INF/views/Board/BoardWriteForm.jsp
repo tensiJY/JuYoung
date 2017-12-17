@@ -18,7 +18,7 @@
 				
 				
 				$("#wFrm").attr('method', 'post');
-				$("#wFrm").attr('action', '../Board/Insert.do').submit();
+				$("#wFrm").attr('action', '../Board/Insert.park').submit();
 			})
 		})
 	</script>

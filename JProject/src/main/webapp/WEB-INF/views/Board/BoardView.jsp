@@ -21,18 +21,18 @@
 			
 			$("#listBtn").on('click', function(){
 				var nowPage = $("#nowPage").val();
-				$(location).attr('href', '../Board/BoardList.do?nowPage='+nowPage);
+				$(location).attr('href', '../Board/BoardList.park?nowPage='+nowPage);
 			});
 			
 			$('#modifyBtn').on('click', function(){
 				var bno = $("#bno").val();
 				var nowPage = $("#nowPage").val();
-				$(location).attr('href', '../Board/ModifyForm.do?bno='+bno+"&nowPage="+nowPage);
+				$(location).attr('href', '../Board/ModifyForm.park?bno='+bno+"&nowPage="+nowPage);
 			});
 			
 			$("#removeBtn").on('click', function(){
 				$("#frm").attr('method', 'post');
-				$("#frm").attr('action', '../Board/Remove.do').submit();
+				$("#frm").attr('action', '../Board/Remove.park').submit();
 			});
 			
 			$("#rfBtn").on('click', function(){
@@ -54,7 +54,7 @@
 				}
 				
 				$("#rFrm").attr('method', 'post');
-			 	$("#rFrm").attr('action', '../Board/ReplyProc.do').submit(); 
+			 	$("#rFrm").attr('action', '../Board/ReplyProc.park').submit(); 
 			});
 			
 			//	수정하기
@@ -68,7 +68,7 @@
 			$(".rmBtn2").on('click', function(){
 				var frm = $(this).parents('form');
 				frm.attr('method', 'post');
-				frm.attr('action', '../Board/ReplyModify.do').submit();
+				frm.attr('action', '../Board/ReplyModify.park').submit();
 				
 			})
 			
@@ -77,7 +77,7 @@
 				var rrno = $(this).attr('data-1');
 				var bno = $("#bno").val();
 				var nowPage = $("#nowPage").val();
-				$(location).attr('href', '../Board/RemoveReply.do?rrno='+rrno+'&bno='+bno+'&nowPage='+nowPage);
+				$(location).attr('href', '../Board/RemoveReply.park?rrno='+rrno+'&bno='+bno+'&nowPage='+nowPage);
 			})
 		})
 	</script>
