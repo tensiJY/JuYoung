@@ -39,5 +39,7 @@ public interface BoardService {
 	public void replyModify(BoardVO rvo) throws Exception;
 
 	public List<BoardVO> mSearch(BoardVO cvo) throws Exception;
+
+	public void getInfo(List<String> list) throws Exception;
 	
 }

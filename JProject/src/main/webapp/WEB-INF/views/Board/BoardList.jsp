@@ -80,6 +80,38 @@
  			
  			$("#dateReset").on('click', function(){
  				$("#sdate").val('');
+ 			})//
+ 			
+ 			$("#chBtn2").on('click', function(){
+ 				var chb2 = [];
+ 				$('input[name=chb2]:checked').each(function(index, data){
+ 					chb2.push($(data).val()); 					 
+ 				}); 
+ 				
+ 				/* var chb2 = [];
+ 				$('input[name=chb2]:checked').each(function(index, data){
+ 					var key = 'bno';
+ 					var value = $(data).val();
+ 					chb2[index] = {key : value};
+ 				}); */
+ 				
+ 				 	console.log(chb2);			
+ 				$.ajax({
+ 					url : '../Board/Print.park',
+ 					data : JSON.stringify(chb2),
+ 					type : 'POST',
+ 					contentType: "application/json; charset=UTF-8",
+ 					dataType : 'json',
+ 					success : function (response){
+ 						if(response != null){
+ 							console.log(response.SUCCESS);
+ 						}
+ 					},
+ 					error : function(){
+ 						console.log("error");
+ 					}
+ 					
+ 				})
  			})
 		})// document end
 		
@@ -145,19 +177,26 @@
 <%-- 리스트 처리 --%>
 <table align="center" border="1" width=700>
 	<tr>
+		<td>체크</td>
 		<td>작성자</td>
 		<td>제목</td>
 		<td>작성일</td>
 		<td>조회수/댓글수</td>
+		
 	</tr>
 	<c:forEach var="BoardVO" items="${BLIST}">
 		<tr>
+			<td><input type="checkbox" id="chb2" name="chb2" value="${BoardVO.bno}"></td>
 			<td>${BoardVO.bwriter}</td>
 			<td><a href="../Board/BoardView.park?bno=${BoardVO.bno}&nowPage=${PINFO.nowPage}">${BoardVO.btitle}</a></td>
 			<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${BoardVO.bregdate}"/></td>
 			<td>[${BoardVO.bviewcnt}] [${BoardVO.rcnt}]</td>
+			
 		</tr>
 	</c:forEach>
+	<tr>
+		<td colspan=5><input type="button" id="chBtn2" name="chBtn2" value="전송"></td>
+	</tr>
 </table>
 <input type="hidden" value="${PINFO.nowPage}" id="nowPage" name="nowPage">
 

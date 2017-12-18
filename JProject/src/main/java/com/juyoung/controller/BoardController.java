@@ -11,9 +11,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.juyoung.domain.BoardVO;
@@ -218,4 +220,18 @@ public class BoardController {
 		System.out.println(cList.size());
 		return "";
 	}
+	
+	@RequestMapping("/Print")
+	public @ResponseBody Map print(@RequestBody List<String> list) throws Exception{
+		bs.getInfo(list);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("SUCCESS", "data");
+		return map;
+	}
+	
+/*	@RequestMapping("/Print")
+	public @ResponseBody String print(@RequestBody List<Map<String, Object>> bno){
+		System.out.println(bno);
+		return "aa";
+	}*/
 }
