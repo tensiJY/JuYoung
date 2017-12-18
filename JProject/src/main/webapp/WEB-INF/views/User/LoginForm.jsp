@@ -19,7 +19,7 @@
 </head>
 <body>
 <form>
-	<table>
+	<table border="1" align="center">
 		<tr>
 			<td> id : </td>
 			<td> <input type="text" id="mid" name="mid"> </td>
@@ -29,7 +29,10 @@
 			<td> <input type="password" id="mpw" name="mpw"> </td>
 		</tr>
 		<tr>
-			<td colspan="2"><input type="button" id=mBtn name="mBtn"> </td>
+			<td colspan="2">
+			<input type="checkbox" id='useCookie' name="useCookie" value="1">
+			<input type="button" id=mBtn name="mBtn" value="로그인">
+			 </td>
 		</tr>
 	</table>
 </form> 

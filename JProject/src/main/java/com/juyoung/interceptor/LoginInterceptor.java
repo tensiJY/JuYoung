@@ -1,5 +1,8 @@
 package com.juyoung.interceptor;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
+
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -33,18 +36,27 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		
 		if(userVO != null){
 			
-			Object URI = request.getSession().getAttribute("URI");
+			session.setAttribute(USER, userVO);
+						
+			// 자동 로그인을 체크 했을 경우 -> 쿠키 생성
+			/*
+			 * 자동 로그인 처리의 기본 아이디어는 세션+쿠키를 이용
+			 * HttpSession에 USER 
+			 */
+			String coo = (String) request.getParameter("useCookie");
 			
-			if(URI == null){
-				session.setAttribute(USER, userVO);
-				modelAndView.addObject("URI", "../");
-			}else{
-				session.removeAttribute("URI");
-				session.setAttribute(USER, userVO);
-				modelAndView.addObject("URI", URI);
-				
+			if(coo != null){
+				Cookie loginCookie = new Cookie("loginCookie", session.getId());
+				loginCookie.setPath("/");			 // path 모든 경로에서 접근 가능하도록..			
+				loginCookie.setMaxAge(60*60*24*7);	 // 시간.
+				response.addCookie(loginCookie);
 			}
 			
+			
+			Object URI = request.getSession().getAttribute("URI");
+			session.removeAttribute("URI");
+			
+			modelAndView.addObject("URI", URI != null? URI : "../");
 			
 		} else if (userVO == null){
 			

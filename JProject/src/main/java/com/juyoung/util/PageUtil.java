@@ -187,4 +187,31 @@ public class PageUtil {
 		<c:if test="${PINFO.endPage ne PINFO.totalPage}">
 			<li><a href="../Board/BoardList.do?nowPage=${PINFO.endPage + 1}">[다음]</a></li>
 	</c:if>
+	
+	
+	<%--	페이지 이동 기능 --%>
+	<table width="1000" border="1" align="center">
+		<tr>
+			<td align="center">
+				<%--	[이전] --%>
+				<c:if test="${PINFO.startPage eq 1}">
+					[이전]
+				</c:if>
+				<c:if test="${PINFO.startPage ne 1}">
+					<a href="">[이전]</a>
+				</c:if>
+				<%--	[1][2][3] --%>
+				<c:forEach var="page" begin="${PINFO.startPage}" end="${PINFO.endPage}">
+					<a href="">[${page}]</a>
+				</c:forEach>
+				<%--	[다음] --%>
+				<c:if test="${PINFO.endPage eq PINFO.totalPage}">
+					[다음]
+				</c:if>
+				<c:if test="${PINFO.endPage ne PINFO.totalPage}">
+					<a href="">[다음]</a>
+				</c:if>
+			</td>
+		</tr>
+	</table>
 */

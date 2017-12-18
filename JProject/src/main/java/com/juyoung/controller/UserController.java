@@ -34,17 +34,18 @@ public class UserController {
 	
 	@RequestMapping(value="/LoginProc", method=RequestMethod.POST)
 	public void loginProc(@ModelAttribute("ldto") LoginDTO ldto, HttpSession session, Model model) throws Exception{
+		
+		if(session.getAttribute("login") != null){
+			session.removeAttribute("login");
+		}
+		
+		
 		UserVO vo = us.login(ldto);
 		
-		if(vo == null){
-			
-			
-			
-		}else{
-			
+		if(vo != null){
 			model.addAttribute("userVO", vo);
-			
 		}
+		
 	}
 	
 		
