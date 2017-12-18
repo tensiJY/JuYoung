@@ -1,5 +1,6 @@
 package com.juyoung.persistence;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -101,5 +102,17 @@ public class BoardDAOImpl implements BoardDAO{
 	@Override
 	public List<BoardVO> mSearch(BoardVO cvo) throws Exception {
 		return session.selectList(namespace+".mSearch", cvo);
+	}
+	
+	@Override
+	public List<BoardVO> getInfo(List<String> list) throws Exception {
+		List<BoardVO> blist = new ArrayList<BoardVO>();
+		for(int i=0; i<list.size(); i++){
+			String bno =(String)list.get(i); 
+			BoardVO bvo = session.selectOne(namespace+".info", bno);
+			blist.add(bvo);
+		}
+		
+		return blist;
 	}
 }

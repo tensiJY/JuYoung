@@ -217,4 +217,10 @@
 			 </if>
 			 order by b_no desc
 	</select>
+	
+	<select id="info" parameterType="int" resultType="bvo">
+		SELECT
+			<include refid="base"/>
+		FROM TBL_BOARD WHERE b_no = #{bno}	
+	</select>
 </mapper> 

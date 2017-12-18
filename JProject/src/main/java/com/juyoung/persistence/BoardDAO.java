@@ -36,5 +36,7 @@ public interface BoardDAO {
 	public void replyModify(BoardVO rvo) throws Exception;
 
 	public List<BoardVO> mSearch(BoardVO cvo) throws Exception;
+	
+	public List<BoardVO> getInfo(List<String> list) throws Exception;
 
 }

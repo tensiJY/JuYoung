@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.juyoung.domain.BoardVO;
 import com.juyoung.persistence.BoardDAO;
+import com.juyoung.util.ExcelUtil;
 import com.juyoung.util.PageUtil;
 
 
@@ -120,4 +121,11 @@ public class BoardServiceImpl implements BoardService{
 	public List<BoardVO> mSearch(BoardVO cvo) throws Exception {
 		return bdao.mSearch(cvo);
 	}
+	
+	@Override
+	public void getInfo(List<String> list) throws Exception {
+		List<BoardVO> blist = bdao.getInfo(list);
+		ExcelUtil.makeXlsx(blist);
+	}
+	
 }
