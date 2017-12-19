@@ -1,9 +1,13 @@
+drop table tbl_user;
+
 create table tbl_user(
 	u_no number not null,
 	u_id varchar2(50) unique,
 	u_pw varchar2(50) not null,
 	u_name varchar2(100) not null,
 	u_point number default 0,
+	u_session varchar2(50) default 'none',
+	u_sessionlimit Date default sysdate,
 	constraint pk_uno primary key (u_no) 
 );
 

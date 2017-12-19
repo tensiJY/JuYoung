@@ -1,5 +1,6 @@
 package com.juyoung.interceptor;
 
+import javax.inject.Inject;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,10 +9,13 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.util.WebUtils;
 
+import com.juyoung.domain.UserVO;
+import com.juyoung.service.UserService;
 import com.juyoung.util.SessionUtil;
 
 public class AuthInterceptor extends HandlerInterceptorAdapter {
-	
+	@Inject
+	private UserService us;
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -24,6 +28,18 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			getUri(request);
 			
 			
+			Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
+			
+			if(loginCookie!= null){
+				System.out.println("11");
+				UserVO userVO = us.checkUserWithSessionKey(loginCookie.getValue());
+				
+				if(userVO !=null){
+					request.getSession().setAttribute("USER", userVO);
+					return true;
+				}
+				
+			}
 			
 			response.sendRedirect("../User/LoginForm.park");
 			return false;

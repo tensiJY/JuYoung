@@ -5,12 +5,17 @@
   
 <mapper namespace="board">
 <!-- 
-	b_no number primary key,
-	b_title varchar2(200) not null,
-	b_content clob not null,
-	b_writer varchar2(100) not null,
-	b_regdate date not null,
-	b_viewcnt number not null
+create table tbl_user(
+	u_no number not null,
+	u_id varchar2(50) unique,
+	u_pw varchar2(50) not null,
+	u_name varchar2(100) not null,
+	u_point number default 0,
+	u_session varchar2(50) default 'none',
+	u_sessionlimit Date default sysdate,
+	constraint pk_uno primary key (u_no) 
+);
+
 		
  -->
  	<sql id="base">

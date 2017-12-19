@@ -30,7 +30,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-			<input type="checkbox" id='useCookie' name="useCookie" value="1">
+			<input type="checkbox" id='useCookie' name="useCookie" value="true">
 			<input type="button" id=mBtn name="mBtn" value="로그인">
 			 </td>
 		</tr>

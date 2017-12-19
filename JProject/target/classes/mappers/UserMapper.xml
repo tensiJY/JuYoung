@@ -6,16 +6,37 @@
 <mapper namespace="User">
 
 <!-- 	
+	create table tbl_user(
 	u_no number not null,
 	u_id varchar2(50) unique,
 	u_pw varchar2(50) not null,
 	u_name varchar2(100) not null,
 	u_point number default 0,
+	u_session varchar2(50) default 'none',
+	u_sessionlimit Date default sysdate,
 	constraint pk_uno primary key (u_no) 
+);
 -->
+	<sql id="base">
+		u_no as mno, u_id as mid, u_pw as mpw, u_name as mname,
+		u_point as mpoint, u_session as msession, u_sessionlimit as msessionlimit
+	</sql>
+	
 	<select id="login" resultType="uvo">
-		select u_no as mno, u_id as mid, u_pw as mpw, u_name as mname,
-		u_point as mpoint from tbl_user where u_id=#{mid} and u_pw=#{mpw} 
+		select <include refid="base"/>
+		 from tbl_user where u_id=#{mid} and u_pw=#{mpw} 
 	</select>
 	
+	<update id="keepLogin" parameterType="hmap">
+		update TBL_USER set
+			U_SESSION = #{SESSIONID},
+			u_SESSIONLIMIT = #{NEXT} WHERE
+			u_id = #{MID}
+	</update>
+	
+	
+	<select id="checkUserWithSessionKey" parameterType="string" resultType="uvo">
+		select <include refid="base"/> from tbl_user where u_session = #{value}
+		and u_SESSIONLIMIT >= SYSDATE
+	</select>
 </mapper>  

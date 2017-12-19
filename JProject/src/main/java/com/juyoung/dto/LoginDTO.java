@@ -1,5 +1,7 @@
 package com.juyoung.dto;
 
+import java.util.Date;
+
 public class LoginDTO {
 	
 	private String mno;
@@ -8,6 +10,30 @@ public class LoginDTO {
 	private String mname;
 	private int mpoint;
 	
+	private String msession;
+	private Date msessionlimit;
+	
+	private boolean useCookie;
+	
+	public boolean isUseCookie() {
+		return useCookie;
+	}
+	public void setUseCookie(boolean useCookie) {
+		this.useCookie = useCookie;
+	}
+	
+	public String getMsession() {
+		return msession;
+	}
+	public void setMsession(String msession) {
+		this.msession = msession;
+	}
+	public Date getMsessionlimit() {
+		return msessionlimit;
+	}
+	public void setMsessionlimit(Date msessionlimit) {
+		this.msessionlimit = msessionlimit;
+	}
 	public String getMno() {
 		return mno;
 	}

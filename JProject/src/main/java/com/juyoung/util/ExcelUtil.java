@@ -1,5 +1,6 @@
 package com.juyoung.util;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
@@ -76,10 +77,18 @@ public class ExcelUtil {
 			cell.setCellValue(bvo.getBregdate());
 			
 		}// for end
-
+		
+		String path = "C:\\Users\\juyoung\\Desktop\\excel\\";
+		File file = new File(path);
+		if(!file.exists()){
+			file.mkdirs();
+		}
+		
+		
+		
 		FileOutputStream fos = null;
 		try {
-			 fos = new FileOutputStream("C:\\Users\\juyoung\\Desktop\\excel\\test.xlsx");
+			fos = new FileOutputStream(file+"\\test.xlsx");
 			//파일을 쓴다
 			workBook.write(fos);
 
