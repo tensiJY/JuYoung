@@ -15,7 +15,8 @@
 	</style>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript">
-	
+		
+		
 		$(function(){
 			$("#wBtn").on('click', function(){
 				var nowPage = $('#nowPage').val();
@@ -116,6 +117,8 @@
 		})// document end
 		
 		var msg = '${MSG}';
+		
+		
 		if(msg=='SUCCESS1'){
 			alert('글을 성공적으로 등록하셨습니다');
 		}else if(msg == 'SUCCESS2'){
@@ -123,6 +126,10 @@
 		}else if(msg == 'SUCCESS3'){
 			alert('글을 성공적으로 수정하였습니다');
 		}
+		
+		
+		
+		
 	</script>
 </head>
 <body>

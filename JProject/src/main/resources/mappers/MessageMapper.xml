@@ -3,6 +3,46 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
- <mapper namespace="MessageMapper">
+
  
+ <mapper namespace="MessageMapper">
+  <!--
+ 	private int meno;
+	private String meSender;
+	private String meReceiver;
+	private String meText;
+	private Date meSendDate;
+	private Date meReadDate;
+	private String meIsShow; 
+  -->
+  	<sql id="base">
+  		ME_NO AS meno,
+  		ME_SENDER AS meSender,
+  		ME_RECEIVER AS meReceiver,
+  		ME_TEXT AS meText,
+  		ME_SENDDATE AS meSendDate
+  	</sql>
+ 
+ 	<insert id="create" parameterType="mvo">
+ 		insert into TBL_MESSAGE (me_no, me_sender, me_receiver, me_text) values
+		((select nvl(max(me_no),0)+1 from tbl_message) , #{meSender}, #{meReceiver}, #{meText})
+ 	</insert>
+ 	
+ 	<select id="count" parameterType="string" resultType="int">
+ 		SELECT COUNT(ME_NO) AS CNT FROM TBL_MESSAGE WHERE ME_RECEIVER = #{meReceiver} 
+ 		AND ME_ISSHOW = 'Y'
+ 	</select>
+ 	
+ 	<select id="list" parameterType="string" resultType="mvo">
+ 		SELECT <include refid="base"/> FROM TBL_MESSAGE WHERE ME_RECEIVER = #{meReceiver} 
+ 		AND ME_ISSHOW = 'Y'
+ 	</select>
+ 	
+ 	<update id="updateState" parameterType="int">
+ 		update tbl_message set ME_READDATE = SYSDATE WHERE ME_NO= #{meno} 
+ 	</update>
+ 	
+ 	<select id="readMessage" parameterType="int" resultType="mvo">
+ 		SELECT <include refid="base"/> FROM TBL_MESSAGE WHERE ME_NO= #{meno}
+ 	</select>
  </mapper>  
