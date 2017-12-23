@@ -5,55 +5,56 @@ import java.util.Date;
 public class MessageVO {
 	
 	private int meno;
-	private String meSender;
-	private String meReceiver;
-	private String meText;
-	private Date meSendDate;
-	private Date meReadDate;
-	private String meIsShow;
-	
+	private String mesender;
+	private String mereceiver;
+	private String metext;
+	private Date mesenddate;
+	private Date mereaddate;
+	private String meisshow;
 	public int getMeno() {
 		return meno;
 	}
 	public void setMeno(int meno) {
 		this.meno = meno;
 	}
-	public String getMeSender() {
-		return meSender;
+	public String getMesender() {
+		return mesender;
 	}
-	public void setMeSender(String meSender) {
-		this.meSender = meSender;
+	public void setMesender(String mesender) {
+		this.mesender = mesender;
 	}
-	public String getMeReceiver() {
-		return meReceiver;
+	public String getMereceiver() {
+		return mereceiver;
 	}
-	public void setMeReceiver(String meReceiver) {
-		this.meReceiver = meReceiver;
+	public void setMereceiver(String mereceiver) {
+		this.mereceiver = mereceiver;
 	}
-	public String getMeText() {
-		return meText;
+	public String getMetext() {
+		return metext;
 	}
-	public void setMeText(String meText) {
-		this.meText = meText;
+	public void setMetext(String metext) {
+		this.metext = metext;
 	}
-	public Date getMeSendDate() {
-		return meSendDate;
+	public Date getMesenddate() {
+		return mesenddate;
 	}
-	public void setMeSendDate(Date meSendDate) {
-		this.meSendDate = meSendDate;
+	public void setMesenddate(Date mesenddate) {
+		this.mesenddate = mesenddate;
 	}
-	public Date getMeReadDate() {
-		return meReadDate;
+	public Date getMereaddate() {
+		return mereaddate;
 	}
-	public void setMeReadDate(Date meReadDate) {
-		this.meReadDate = meReadDate;
+	public void setMereaddate(Date mereaddate) {
+		this.mereaddate = mereaddate;
 	}
-	public String getMeIsShow() {
-		return meIsShow;
+	public String getMeisshow() {
+		return meisshow;
 	}
-	public void setMeIsShow(String meIsShow) {
-		this.meIsShow = meIsShow;
+	public void setMeisshow(String meisshow) {
+		this.meisshow = meisshow;
 	}
+	
+	
 	
 	
 }

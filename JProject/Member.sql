@@ -22,5 +22,8 @@ insert into tbl_user(u_no, u_id, u_pw, u_name) values( (select nvl(max(u_no),0)+
 select * from tbl_user
 
 commit;
-
-
+-- 포인트 증가
+ 		UPDATE TBL_USER SET 
+ 			U_POINT = U_POINT + 100 
+ 		WHERE
+ 			U_ID = 'user00';

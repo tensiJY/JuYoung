@@ -17,15 +17,15 @@
   -->
   	<sql id="base">
   		ME_NO AS meno,
-  		ME_SENDER AS meSender,
-  		ME_RECEIVER AS meReceiver,
-  		ME_TEXT AS meText,
-  		ME_SENDDATE AS meSendDate
+  		ME_SENDER AS mesender,
+  		ME_RECEIVER AS mereceiver,
+  		ME_TEXT AS metext,
+  		ME_SENDDATE AS mesenddate
   	</sql>
  
  	<insert id="create" parameterType="mvo">
  		insert into TBL_MESSAGE (me_no, me_sender, me_receiver, me_text) values
-		((select nvl(max(me_no),0)+1 from tbl_message) , #{meSender}, #{meReceiver}, #{meText})
+		((select nvl(max(me_no),0)+1 from tbl_message) , #{mesender}, #{mereceiver}, #{metext})
  	</insert>
  	
  	<select id="count" parameterType="string" resultType="int">

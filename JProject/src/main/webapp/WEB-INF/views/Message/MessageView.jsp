@@ -9,12 +9,6 @@
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-
-<a href="./Board/BoardList.park">게시판</a>
-<c:if test="${empty sessionScope.USER}"><a href="./User/LoginForm.park">로그인</a><br></c:if>
-<c:if test="${not empty sessionScope.USER}">
-	<a href="./User/Logout.park">로그아웃</a><br>
-	<a href="./Message/MessageList.park">메시지</a>
-</c:if>
+  
 </body>
 </html>
