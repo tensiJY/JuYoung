@@ -8,7 +8,7 @@ public interface MessageService {
 
 	public void create(MessageVO vo) throws Exception;
 	
-	public MessageVO readMessage(int meno) throws Exception;
+	public MessageVO readMessage(int meno, String mid) throws Exception;
 	
 	
 	

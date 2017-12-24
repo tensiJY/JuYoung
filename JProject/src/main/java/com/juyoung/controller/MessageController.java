@@ -13,7 +13,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.juyoung.domain.MessageVO;
 import com.juyoung.service.MessageService;
-import com.juyoung.service.PointService;
 import com.juyoung.util.SessionUtil;
 
 @Controller
@@ -23,8 +22,7 @@ public class MessageController {
 	@Inject
 	private MessageService ms;
 	
-	@Inject
-	private PointService ps;
+	
 	
 	@RequestMapping(value="/MessageList")
 	public void messageList(HttpSession session, Model model)throws Exception{
@@ -42,8 +40,8 @@ public class MessageController {
 	@RequestMapping(value="/MessageView", method=RequestMethod.GET)
 	public void messageView(@RequestParam("meno") int meno, HttpSession session, Model model) throws Exception{
 		String mid = SessionUtil.getId(session, "USER");
-		ps.updatePoint(mid, 5); // 글을 읽는 사람은 5포인트
-		model.addAttribute("MessageVO", ms.readMessage(meno));
+		
+		model.addAttribute("MessageVO", ms.readMessage(meno, mid));
 	}
 	
 	/**
@@ -60,8 +58,9 @@ public class MessageController {
 			RedirectAttributes rttr)throws Exception{
 		
 		String mid = SessionUtil.getId(session, "USER");
-		ps.updatePoint(mid, 10);
+		
 		mvo.setMesender(mid);
+		
 		ms.create(mvo);
 		rttr.addFlashAttribute("MSG", "메시지를 전송하였습니다");
 		return "redirect:../Message/MessageList.park";

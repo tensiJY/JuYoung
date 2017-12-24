@@ -73,8 +73,13 @@
 	</logger>  <!-- 추가 -->
 	
 	<!-- Root Logger -->
-	<root>
+	<!-- <root>
 		<priority value="warn" />
+		<appender-ref ref="console" />
+	</root> -->
+	
+	<root>
+		<priority value="info" />
 		<appender-ref ref="console" />
 	</root>
 	

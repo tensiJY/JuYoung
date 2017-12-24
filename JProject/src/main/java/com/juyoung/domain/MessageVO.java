@@ -54,7 +54,10 @@ public class MessageVO {
 		this.meisshow = meisshow;
 	}
 	
-	
+	@Override
+	public String toString(){
+		return " " + meno + " " + mesender + " " + mereceiver + " " + metext;
+	}
 	
 	
 }

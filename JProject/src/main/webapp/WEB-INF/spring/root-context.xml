@@ -56,6 +56,12 @@
 	<!-- 자동으로 AspectJ라이브러리를 이용해서 Proxy객체를 생성해 내는 용도 -->
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	<tx:annotation-driven/>
+	
+	<context:component-scan base-package="com.juyoung.aop"/>
 	<context:component-scan base-package="com.juyoung.persistence" />
 	<context:component-scan base-package="com.juyoung.service" />
 </beans>
