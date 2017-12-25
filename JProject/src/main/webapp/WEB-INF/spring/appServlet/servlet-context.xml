@@ -58,4 +58,13 @@
 			<beans:bean id="authInterceptor" class="com.juyoung.interceptor.AuthInterceptor"></beans:bean>
 		</interceptor>
 	</interceptors>
+	
+	<!-- 설정 -->
+	<beans:bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<beans:property name="basename" value="message/messages" />
+	</beans:bean>
+	
+
+	
 </beans:beans>
+

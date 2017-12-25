@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.juyoung.park">
+	<logger name="com.juyoung">
 		<level value="info" />
 	</logger>
 	

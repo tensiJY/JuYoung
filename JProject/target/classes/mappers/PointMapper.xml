@@ -8,6 +8,6 @@
  		UPDATE TBL_USER SET 
  			U_POINT = U_POINT + #{POINT} 
  		WHERE
- 			1U_ID = #{MID}	
+ 			U_ID = #{MID}	
  	</update>
  </mapper>

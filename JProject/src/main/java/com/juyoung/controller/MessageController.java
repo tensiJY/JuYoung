@@ -53,16 +53,21 @@ public class MessageController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/AddMessage", method=RequestMethod.POST)
-	public String addMessage(@ModelAttribute("mvo")MessageVO mvo, 
+	public String addMessage(@ModelAttribute("mvo")  MessageVO mvo, 
 			HttpSession session, 
 			RedirectAttributes rttr)throws Exception{
 		
-		String mid = SessionUtil.getId(session, "USER");
 		
-		mvo.setMesender(mid);
 		
-		ms.create(mvo);
-		rttr.addFlashAttribute("MSG", "메시지를 전송하였습니다");
-		return "redirect:../Message/MessageList.park";
-	}
-}
+			String mid = SessionUtil.getId(session, "USER");
+			
+			mvo.setMesender(mid);
+			
+			ms.create(mvo);
+			rttr.addFlashAttribute("MSG", "메시지를 전송하였습니다");
+			return "redirect:../Message/MessageList.park";
+		
+	}// method end
+	
+}// class end
+

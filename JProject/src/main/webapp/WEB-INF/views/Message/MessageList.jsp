@@ -1,7 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
-	
+<%@ taglib prefix="form"  uri="http://www.springframework.org/tags/form"%>
+
 <!doctype html>
 <html>
 <head>
@@ -45,16 +46,16 @@
 <form>
 	<table border="1" align="center" width="600">
 		<tr>
-			<td>받는 사람</td>
-			<td colspan=2><input type="text" id="mereceiver" name="mereceiver"></td>
+			<td>받는 사람</td> 
+			<td colspan=2><input type="text" name="mereceiver" /></td>
 		</tr>
 		<tr>
 			<td>내용</td>
-			<td  colspan=2><textarea id="metext" name="metext"> </textarea></td>
+			<td  colspan=2><textarea  name="metext"></textarea></td>
 		</tr>
 		<tr>
 			<td colspan=3>
-				<input type="button" value="전송" id="mBtn" name="mBtn">
+				<input type=button id="mBtn" name="mBtn">전송
 			</td>
 		</tr>
 	</table>

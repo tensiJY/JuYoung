@@ -8,12 +8,8 @@ public class UserVO {
 	private String mpw;
 	private String mname;
 	private int mpoint;
-	
 	private String msession;
 	private Date msessionlimit;
-	
-	
-	
 	
 	public String getMsession() {
 		return msession;
