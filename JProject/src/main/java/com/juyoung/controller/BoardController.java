@@ -57,6 +57,7 @@ public class BoardController {
 			List<BoardVO> list = bs.boardList(pInfo);
 			model.addAttribute("BLIST", list);
 			model.addAttribute("PINFO", pInfo);
+			logger.info("aaaa");
 			return "Board/BoardList";
 					
 		}

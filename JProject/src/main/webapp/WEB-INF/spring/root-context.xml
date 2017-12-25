@@ -23,7 +23,7 @@
 		<property name="password" value="juyoung" />
 	</bean>  -->
 	
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 	    <property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"/>
 	    <property name="url" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:orcl" />
 	    <property name="username" value="juyoung"/>
@@ -49,16 +49,17 @@
 		 
 		 Oracle03SqlSessionFactoryTest 의 콘솔에서 WARN..이 뜬다. 하지만 clearCache를 할경우 warn 뜨지 않음. 
 		-->
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" >
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
 	
 	<!-- 자동으로 AspectJ라이브러리를 이용해서 Proxy객체를 생성해 내는 용도 -->
-	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	<aop:aspectj-autoproxy />
 	
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
+	
 	<tx:annotation-driven/>
 	
 	<context:component-scan base-package="com.juyoung.aop"/>
