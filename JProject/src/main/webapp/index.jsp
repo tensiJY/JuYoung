@@ -31,5 +31,7 @@
 	<a href="./User/Logout.park">로그아웃</a><br>
 	<a href="./Message/MessageList.park">메시지</a>
 </c:if>
+<br>
+	<a href="./HwpEx.jsp">a</a>
 </body>
 </html>
