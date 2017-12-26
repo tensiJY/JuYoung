@@ -25,8 +25,16 @@ import com.juyoung.util.PageUtil;
 
 /**
  * 
- * @author	박주영
- * @since	
+ * @author  : 박주영
+ * @since   : 2017. 12. 26.
+ * @version : 1.0
+ * @see 
+ *  == 개정이력(Modification Information) ==
+ *   
+ *  수정일             		   수정자   		  수정내용
+ *  -------   		 --------    ---------------------------
+ *  2017. 12. 26.	  			  최초생성			
+ * 
  *
  */
 @Controller
