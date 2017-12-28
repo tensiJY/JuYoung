@@ -32,6 +32,7 @@
 	<a href="./Message/MessageList.park">메시지</a>
 </c:if>
 <br>
-	<a href="./HwpEx.jsp">a</a>
+	<!-- <a href="./HwpEx.jsp">a</a> -->
+	<a href="./Report/List.park">보고서</a>
 </body>
 </html>

@@ -10,6 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.juyoung.domain.BoardVO;
 import com.juyoung.service.BoardService;
 import com.juyoung.util.PageUtil;
+import com.juyoung.validator.BoardValidator;
 
 
 /**
@@ -91,12 +94,30 @@ public class BoardController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/Insert", method=RequestMethod.POST)
-	public String insert(BoardVO bvo, RedirectAttributes rttr) throws Exception{
+	public String insert(BoardVO bvo, BindingResult result, RedirectAttributes rttr) throws Exception{
 		logger.info("	controller	Board/Insert");
-		bs.insert(bvo);
-		rttr.addAttribute("nowPage", bvo.getNowPage());
-		rttr.addFlashAttribute("MSG", "SUCCESS1");
-		return "redirect:../Board/BoardList.park";
+		
+		
+		new BoardValidator().validate(bvo, result);
+		
+		if(result.hasErrors()){
+			
+			List<ObjectError> l = result.getAllErrors();
+			
+			for(ObjectError o : l){
+				logger.debug(o.getCode() + o.getDefaultMessage());
+			}
+			
+			return "Board/BoardWriteForm";
+		}
+		else{
+			bs.insert(bvo);
+			rttr.addAttribute("nowPage", bvo.getNowPage());
+			rttr.addFlashAttribute("MSG", "SUCCESS1");
+			return "redirect:../Board/BoardList.park";
+		}
+		
+		
 	}
 	
 	/**

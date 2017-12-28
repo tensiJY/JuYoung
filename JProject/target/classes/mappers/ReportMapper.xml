@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="report">
+	<sql id="base">
+		R_NO AS rno, R_TITLE AS rtitle, R_DNAME AS rdname, R_DJOB AS rdjob, R_DATE AS rdate,
+		R_NAME AS rname, R_TIME1 AS rtime1, R_TIME2 AS rtime2, R_TIME3 AS rtime3,
+		R_TIME4 AS rtime4, R_TIME5 AS rtime5, R_TIME6 AS rtime6, 
+		R_EDUC AS reduc, R_PROG AS rprog, R_SUMM AS rsumm, R_TROU AS rtrou
+	</sql>
+	
+	<select id="getReportList" resultType="rvo">
+		SELECT
+			<include refid="base"/>
+		FROM
+			TBL_REPORT where
+		 R_isShow='Y' ORDER BY R_NO DESC	
+	</select>
+	
+	<insert id="reportProc" parameterType="rvo">
+		INSERT
+			INTO TBL_REPORT
+				(R_NO, R_TITLE, R_DNAME, R_DJOB, R_DATE, R_NAME, 
+				R_TIME1, R_TIME2, R_TIME3, R_TIME4, R_TIME5, R_TIME6,
+				R_EDUC, R_PROG, R_SUMM, R_TROU) 
+			VALUES
+				(
+					(SELECT NVL(MAX(R_NO),0)+1 FROM TBL_REPORT), #{rtitle}, #{rdname},
+					#{rdjob}, #{rdate}, #{rname}, 
+					#{rtime1}, #{rtime2}, #{rtime3}, #{rtime4}, #{rtime5}, #{rtime6},
+					#{reduc}, #{rprog}, #{rsumm}, #{rtrou}
+				
+				)
+	</insert>
+</mapper>  

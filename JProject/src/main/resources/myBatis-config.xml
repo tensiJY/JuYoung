@@ -18,5 +18,6 @@
 		<typeAlias type="com.juyoung.domain.BoardVO" alias="bvo"/>
 		<typeAlias type="com.juyoung.domain.UserVO" alias="uvo"/>
 		<typeAlias type="com.juyoung.domain.MessageVO" alias="mvo"/>
+		<typeAlias type="com.juyoung.domain.ReportVO" alias="rvo"/>
 	</typeAliases>
 </configuration>

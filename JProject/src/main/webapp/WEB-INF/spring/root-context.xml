@@ -23,13 +23,19 @@
 		<property name="password" value="juyoung" />
 	</bean>  -->
 	
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+<!-- 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 	    <property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"/>
 	    <property name="url" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:orcl" />
 	    <property name="username" value="juyoung"/>
 	    <property name="password" value="juyoung"/>
- 	</bean> 
-	
+ 	</bean>  -->
+ 	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+	    <property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"/>
+	    <property name="url" value="jdbc:log4jdbc:oracle:thin:@192.168.0.100:1521:XE" />
+	    <property name="username" value="maxstudy"/>
+	    <property name="password" value="maxstudy"/>
+ 	</bean> 	
 		<!-- 위의 컨넥션 풀 작업을 결과를 우리는 앞으로 myBatis라는 프레임 워크를 이용해서 처리할 예정이다 .
 		 myBatis 설정(마이바티스 등록 + 컨넥션 풀과 연결해 놓음)-->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
