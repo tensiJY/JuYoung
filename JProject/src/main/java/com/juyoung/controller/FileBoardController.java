@@ -26,6 +26,7 @@ public class FileBoardController {
 	@RequestMapping(value="/List")
 	public void fileList(@RequestParam Map<String, Object>map, 
 						 Model model )throws Exception{
+		System.out.println(map.get("nowPage"));
 		
 	}// method fileList end
 	

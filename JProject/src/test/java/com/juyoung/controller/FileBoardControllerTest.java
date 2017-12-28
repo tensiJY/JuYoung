@@ -38,7 +38,7 @@ public class FileBoardControllerTest {
 	
 	@Test
 	public void testFileList() throws Exception{
-		mockMvc.perform(MockMvcRequestBuilders.get("/FileBoard/List.park"));
+		mockMvc.perform(MockMvcRequestBuilders.get("/FileBoard/List.park").param("nowPage", "10"));
 				
 				
 		logger.info("	testFileList : success");
