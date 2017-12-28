@@ -20,4 +20,7 @@ insert into TBL_MESSAGE (me_no, me_sender, me_receiver, me_text) values
 SELECT count(ME_NO) AS CNT FROM TBL_MESSAGE WHERE ME_RECEIVER = 'user00';
 -- 메시지 리스트
 
-
+-- 페이징
+SELECT * FROM (
+select rownum as rr, t.* from (select * from tbl_report where r_isShow= 'Y' order by r_no desc )t
+) WHERE RR BETWEEN 1 AND 10

@@ -23,3 +23,6 @@ create table tbl_report(
 select * from tbl_report where r_isShow = 'Y' order by r_no desc;
 
 SELECT NVL(MAX(R_NO),0)+1 FROM TBL_REPORT;
+
+-- 토탈 카운트
+select count(r_no) from tbl_report where r_isshow='Y';

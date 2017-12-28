@@ -1,6 +1,7 @@
 package com.juyoung.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -23,8 +24,15 @@ public class ReportDAOImpl implements ReportDAO{
 	private SqlSession sql;
 	
 	@Override
-	public List<ReportVO> getReportList() throws Exception {
-		return sql.selectList(namespace+".getReportList");
+	public int getTotalCount() throws Exception {
+		
+		return sql.selectOne(namespace+".getTotalCount");
+	}
+	
+	
+	@Override
+	public List<ReportVO> getReportList(Map<String, Object> map) throws Exception {
+		return sql.selectList(namespace+".getReportList", map);
 	}
 	
 	@Override
@@ -32,4 +40,8 @@ public class ReportDAOImpl implements ReportDAO{
 		sql.insert(namespace+".reportProc", rvo);	
 	}
 	
+	@Override
+	public ReportVO getReportView(int rno) throws Exception {
+		return sql.selectOne(namespace+".reportView", rno);
+	}
 }

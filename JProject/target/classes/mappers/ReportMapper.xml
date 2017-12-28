@@ -11,12 +11,18 @@
 		R_EDUC AS reduc, R_PROG AS rprog, R_SUMM AS rsumm, R_TROU AS rtrou
 	</sql>
 	
-	<select id="getReportList" resultType="rvo">
-		SELECT
-			<include refid="base"/>
-		FROM
-			TBL_REPORT where
-		 R_isShow='Y' ORDER BY R_NO DESC	
+	<select id="getTotalCount" resultType="int">
+		SELECT COUNT(R_NO) FROM TBL_REPORT WHERE R_ISSHOW = 'Y'
+	</select>
+	
+	<select id="getReportList" parameterType="hmap" resultType="rvo" >
+		SELECT 
+			*
+			 FROM (
+					select rownum as rr, t.* from 
+					(select <include refid="base" /> from tbl_report where r_isShow= 'Y' order by r_no desc )t
+			)
+		 WHERE RR BETWEEN #{START} AND #{END}
 	</select>
 	
 	<insert id="reportProc" parameterType="rvo">
@@ -34,4 +40,12 @@
 				
 				)
 	</insert>
+	
+	<select id="reportView" parameterType="int" resultType="rvo">
+		SELECT
+			<include refid="base" />
+		FROM
+			TBL_REPORT
+		WHERE R_NO = #{rno}		
+	</select>
 </mapper>  

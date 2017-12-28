@@ -14,7 +14,7 @@ public class PageUtil {
 	public		int		startPage;		//	시작 페이지
 	public		int		endPage;		//	마지막 페이지
 	
-	
+
 	public		int		start;
 	public		int		end;
 	
@@ -70,6 +70,20 @@ public class PageUtil {
 	
 	private void calEnd(){
 		end = listCount*nowPage;
+	}
+	
+	
+	public int getStart() {
+		return start;
+	}
+	public void setStart(int start) {
+		this.start = start;
+	}
+	public int getEnd() {
+		return end;
+	}
+	public void setEnd(int end) {
+		this.end = end;
 	}
 	
 	//	이 정보는 view에서 JSTL를 이용해서 사용해야 하므러....

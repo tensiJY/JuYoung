@@ -13,20 +13,18 @@
 	</style>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript">
-	/* var today = new Date('yyyy-MM-dd');
-	console.log(today);
-	$('#rdate').val(today);
-	 */
 		$(function(){
 			$("#iBtn").on('click', function(){
-				$("#abc").attr('method', 'post');
-				$("#abc").attr('action', '../Report/ReportProc.park').submit();
+				var frm = $(this).parents('form');
+				console.log(frm);
+				frm.attr('method', 'post');
+				frm.attr('action', '../Report/ReportProc.park').submit(); 
 			});
-		})
+		})<%-- function end --%>
 	</script>
 </head>
 <body>
-<form id="abc">
+<form>
 <table border="1" width="80%" align="center">
 	<tr>
 		<th><input type="text" id="rtitle" name="rtitle" value="일일 업무 보고서" readonly class="content1"></th>
