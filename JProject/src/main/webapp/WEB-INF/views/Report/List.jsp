@@ -63,7 +63,7 @@
 <br>
 
 <%-- 페이징 --%>
-<table width="800" border="1" align="center">
+<table border="1" width="80%" align="center">
 	<tr>
 		<td align="center">
 			<%--	[이전] --%>

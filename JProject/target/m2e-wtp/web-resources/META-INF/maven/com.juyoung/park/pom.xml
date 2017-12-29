@@ -114,12 +114,15 @@
 			    <artifactId>commons-io</artifactId>
 			    <version>2.4</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.
+/poi -->
 		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
 		<dependency>
 		    <groupId>org.apache.poi</groupId>
 		    <artifactId>poi</artifactId>
-		    <version>3.17</version>
+		    <version>3.15</version>
 		</dependency>
+
 		
 		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
 		<dependency>

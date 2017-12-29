@@ -26,9 +26,21 @@ public class FileBoardController {
 	@RequestMapping(value="/List")
 	public void fileList(@RequestParam Map<String, Object>map, 
 						 Model model )throws Exception{
-		System.out.println(map.get("nowPage"));
 		
+		String nowPage = (String)map.get("nowPage");
+		if(nowPage == null || nowPage.length() == 0){
+			nowPage = "1";
+		}
 		
+		map.put("nowPage", nowPage);
+		model.addAttribute("MAP", map);
 	}// method fileList end
+	
+	@RequestMapping(value="/Form")
+	public void fileWriteForm(@RequestParam Map<String,Object> map,
+							  Model model)throws Exception{
+		System.out.println(map);
+		model.addAttribute("MAP", map);
+	}// method fileWriteFrom end;
 	
 }// class FileBoardController end
