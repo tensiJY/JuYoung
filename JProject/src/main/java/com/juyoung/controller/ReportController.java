@@ -120,4 +120,12 @@ public class ReportController {
 		return "redirect:../Report/View.park";
 	}
 	
+	@RequestMapping(value="/ExcelDown")
+	public String excelDown(@RequestParam("rno") int rno, Map<String,Object> ModelMap) throws Exception{
+		
+		ModelMap.put("RVO", rs.getReportView(rno));
+
+		return "excelView";
+	}//ExcelDown end..
+	
 }// reportController end

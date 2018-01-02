@@ -4,12 +4,20 @@
 <!doctype html>
 <html>
 <head>
-	<meta charset="UTF-8">
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Document</title>
+	<!-- 합쳐지고 최소화된 최신 CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<!-- 부가적인 테마 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<style type="text/css">
 		
 	</style>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	
 	<script type="text/javascript">
 		$(function(){
 			$("#iBtn").on('click', function(){
@@ -21,13 +29,19 @@
 				var nowPage = $("#nowPage").val();
 				$(location).attr('href', '../Report/ReportPrint.park?rno='+rno+"&nowPage="+nowPage);
 			})
+			
+			$("#eBtn").on('click', function(){
+				var rno = $('input[name="rno"]').val();
+				alert('abcd');
+				$(location).attr('href', '../Report/ExcelDown.park?rno='+rno);
+			});
 		})// document function end	
 	</script>
 </head>
 <body>
 
 
-<table border="1" width="80%" align="center">
+<table  width="80%" align="center" class="table">
 	<tr>
 		<th>${ReportVO.rtitle}</th>
 	</tr>
@@ -36,7 +50,7 @@
 <br>
 <%-- 사원 정보 --%>
 
-	<table border="1" width="80%" align="center">
+	<table  width="80%" align="center" class="table">
 		<tr>
 			<th>성명</th>
 			<td>${ReportVO.rname}</td>
@@ -54,7 +68,7 @@
 	<br>
 	
 	<%-- 금일 진행 사항 --%>
-	<table border="1" width="80%" align="center">
+	<table  width="80%" align="center" class="table">
 		<tr>
 			<th colspan=3>금일 진행 사항</th>
 		</tr>
@@ -98,7 +112,7 @@
 	<br>
 	
 	<%--차일 진행 예정사항 --%>
-	<table border="1" width="80%" align="center">
+	<table  width="80%" align="center" class="table">
 		<tr>
 			<th colspan=2>차일 진행예정사항</th>
 		</tr>
@@ -114,7 +128,7 @@
 	
 	<br>
 	<%-- 금일 업무결과 요약 / 문제점 & 중요정보 --%>
-	<table border="1" width="80%" align="center">
+	<table width="80%" align="center" class="table">
 		<tr>
 			<th>금일 업무결과 요약</th>
 			<th>문제점/중요정보</th>
@@ -126,11 +140,12 @@
 		</tr>
 	</table>
 	
-	<table border="1" width="80%" align="center">
+	<table  width="80%" align="center" class="table">
 		<tr>
 			<td>
-				<input type="button" id="iBtn" name="iBtn" value="수정하기">
-				<input type="button" id="pBtn" name="pBtn" value="출력하기">
+				<input type="button" id="iBtn" name="iBtn" value="수정하기" class="btn btn-xs btn-primary">
+				<input type="button" id="pBtn" name="pBtn" value="출력하기" class="btn btn-xs btn-primary">
+				<input type="button" id="eBtn" name="eBtn" value="엑셀다운로드" class="btn btn-xs btn-primary">
 			</td>
 		</tr>
 	</table>

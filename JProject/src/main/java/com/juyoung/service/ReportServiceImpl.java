@@ -89,7 +89,7 @@ public class ReportServiceImpl implements ReportService{
 		ReportVO rvo = rdao.getReportView(rno);
 		
 		String[] rtimes = {	rvo.getRtime1(), rvo.getRtime2(), rvo.getRtime3(),
-							rvo.getRtime4(),rvo.getRtime5(), rvo.getRtime6()	};
+							rvo.getRtime4(), rvo.getRtime5(), rvo.getRtime6()	};
 		
 		for(int i=0; i<rtimes.length; i++){
 			String temp = rtimes[i];

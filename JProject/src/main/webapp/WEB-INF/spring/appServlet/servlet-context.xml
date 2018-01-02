@@ -19,7 +19,16 @@
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="order" value="2" />
 	</beans:bean>
+	
+	<!-- 엑셀 뷰 설정 -->
+	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+        <beans:property name="order" value="1" />
+    </beans:bean>
+	<beans:bean name="excelView" class="com.juyoung.util.ExcelView" />
+	
+	
 	
 	<context:component-scan base-package="com.juyoung" />
 	
