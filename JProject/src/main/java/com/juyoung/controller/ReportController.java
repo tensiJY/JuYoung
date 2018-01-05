@@ -121,11 +121,30 @@ public class ReportController {
 	}
 	
 	@RequestMapping(value="/ExcelDown")
-	public String excelDown(@RequestParam("rno") int rno, Map<String,Object> ModelMap) throws Exception{
+	public String excelDown(@ModelAttribute("rvo") ReportVO rvo, Map<String,Object> ModelMap) throws Exception{
+		String type = rvo.getType();
 		
-		ModelMap.put("RVO", rs.getReportView(rno));
-
+		if(type.equals("list")){
+			List<ReportVO>list = rs.reportExcelList(rvo.getChb2());
+			ModelMap.put("TYPE", "list");
+			ModelMap.put("LIST", list);
+			
+		}else if(type.equals("view")) {
+			ModelMap.put("TYPE", "view");
+			ModelMap.put("RVO", rs.getReportView(rvo.getRno()));
+			
+		}
+		
 		return "excelView";
 	}//ExcelDown end..
+	
+	
+	@RequestMapping("/sendMail")
+	public String sendMail(@ModelAttribute("rvo")ReportVO rvo, RedirectAttributes rttr ) throws Exception{
+		rs.sendMail(rvo);
+		
+		rttr.addFlashAttribute("MSG", "메일을 성공적으로 보냈습니다");
+		return "redirect:../Report/List.park";
+	}
 	
 }// reportController end

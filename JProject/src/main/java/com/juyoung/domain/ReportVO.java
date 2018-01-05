@@ -56,7 +56,39 @@ public class ReportVO {
 	private String rtimee;
 	private String rtimef;
 	
+	private String type;
+	private String[] chb2;
 	
+	//	메일 관련
+	private String mtitle;
+	private String msend;
+	
+	
+	
+	public String getMtitle() {
+		return mtitle;
+	}
+	public void setMtitle(String mtitle) {
+		this.mtitle = mtitle;
+	}
+	public String getMsend() {
+		return msend;
+	}
+	public void setMsend(String msend) {
+		this.msend = msend;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String[] getChb2() {
+		return chb2;
+	}
+	public void setChb2(String[] chb2) {
+		this.chb2 = chb2;
+	}
 	public String getRtimea() {
 		return rtimea;
 	}

@@ -19,6 +19,8 @@
 	</style>
 	
 	<script type="text/javascript">
+		var msg = '${MSG}'; 
+	
 		$(function(){
 			$("#iBtn").on('click', function(){
 				
@@ -32,8 +34,7 @@
 			
 			$("#eBtn").on('click', function(){
 				var rno = $('input[name="rno"]').val();
-				alert('abcd');
-				$(location).attr('href', '../Report/ExcelDown.park?rno='+rno);
+				$(location).attr('href', '../Report/ExcelDown.park?type=view&rno='+rno);
 			});
 		})// document function end	
 	</script>
@@ -144,7 +145,7 @@
 		<tr>
 			<td>
 				<input type="button" id="iBtn" name="iBtn" value="수정하기" class="btn btn-xs btn-primary">
-				<input type="button" id="pBtn" name="pBtn" value="출력하기" class="btn btn-xs btn-primary">
+				<!-- <input type="button" id="pBtn" name="pBtn" value="워드출력하기" class="btn btn-xs btn-primary"> -->
 				<input type="button" id="eBtn" name="eBtn" value="엑셀다운로드" class="btn btn-xs btn-primary">
 			</td>
 		</tr>

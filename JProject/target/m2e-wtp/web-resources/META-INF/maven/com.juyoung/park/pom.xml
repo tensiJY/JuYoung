@@ -226,6 +226,21 @@
 			<version>${org.slf4j-version}</version>
 			<scope>runtime</scope>
 		</dependency>
+		
+		<!-- Java Mail API -->
+
+<!-- 메일 보내기 셋팅 -->
+<dependency> 
+<groupId>com.sun.mail</groupId> 
+<artifactId>javax.mail</artifactId> 
+<version>1.5.6</version> 
+</dependency>
+<dependency> 
+<groupId>org.springframework</groupId> 
+<artifactId>spring-context-support</artifactId> 
+<version>${org.springframework-version}</version> 
+</dependency>
+
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>

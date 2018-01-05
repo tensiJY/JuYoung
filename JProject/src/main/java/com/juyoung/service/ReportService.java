@@ -17,6 +17,10 @@ public interface ReportService {
 
 	public void reportPrint(String rno) throws Exception;
 
+	public List<ReportVO> reportExcelList(String[] chb2) throws Exception;
+
+	public void sendMail(ReportVO rvo) throws Exception;
+
 	
 
 }

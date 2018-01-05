@@ -11,30 +11,81 @@
 		.content2{width: 98%; height:40px;}
 		.content3{width: 98%; height:50px;}
 	</style>
+	<!-- 합쳐지고 최소화된 최신 CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<!-- 부가적인 테마 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		$(function(){
+			$('#mm').on('click', function () {
+						
+				
+				$(this).attr('data-toggle', 'modal');
+				$(this).attr('data-target','#myModal');
+			});
+			
+			$("#saveBtn").on('click', function(){
+				var mTitle = $('#aaa').val();
+				var mSend = $('#bbb').val();
+								
+				
+				if(mTitle == null || mTitle.trim().length == 0){
+					$('#aaa').focus()
+					return;
+				}
+				
+				if(mSend == null || mSend.trim().length == 0){
+					$('#bbb').focus();
+					return;
+				}
+				var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+				
+				var check = mSend.match(regExp);
+				
+				if( !check ){
+					$('#bbb').focus();
+					return;
+				}
+				
+				$(this).attr("data-dismiss", "modal");
+				
+				var tag = "<input type=hidden id=mtitle name=mtitle value=" + mTitle + ">";
+				tag += "<input type=hidden id=msend name=msend value=" + mSend + ">";
+				
+				var frm = $(this).parents('div').prev('form');
+				
+				frm.append(tag);
+				frm.attr('method', 'post').attr('action', '../Report/sendMail.park').submit();
+				
+			});
+			
 			$("#iBtn").on('click', function(){
 				var frm = $(this).parents('form');
 				console.log(frm);
 				frm.attr('method', 'post');
 				frm.attr('action', '../Report/ReportProc.park').submit(); 
 			});
+			
+			
+			
 		})<%-- function end --%>
 	</script>
 </head>
 <body>
 <form>
-<table border="1" width="80%" align="center">
-	<tr>
-		<th><input type="text" id="rtitle" name="rtitle" value="일일 업무 보고서" readonly class="content1"></th>
-	</tr>
-</table>
+	<table align="center" class='table'>
+		<tr>
+			<th><input type="text" id="rtitle" name="rtitle" value="일일 업무 보고서" readonly class="content1"></th>
+		</tr>
+	</table>
 
 <br>
 <%-- 사원 정보 --%>
 
-	<table border="1" width="80%" align="center">
+	<table class='table' >
 		<tr>
 			<th>성명</th>
 			<td><input type="text" id="rname" name="rname"></td>
@@ -68,7 +119,7 @@
 	<br>
 	
 	<%-- 금일 진행 사항 --%>
-	<table border="1" width="80%" align="center">
+	<table class='table' >
 		<tr>
 			<th colspan=3>금일 진행 사항</th>
 		</tr>
@@ -112,7 +163,7 @@
 	<br>
 	
 	<%--차일 진행 예정사항 --%>
-	<table border="1" width="80%" align="center">
+	<table class='table' >
 		<tr>
 			<th colspan=2>차일 진행예정사항</th>
 		</tr>
@@ -128,7 +179,7 @@
 	
 	<br>
 	<%-- 금일 업무결과 요약 / 문제점 & 중요정보 --%>
-	<table border="1" width="80%" align="center">
+	<table class='table' >
 		<tr>
 			<th>금일 업무결과 요약</th>
 			<th>문제점/중요정보</th>
@@ -140,13 +191,45 @@
 		</tr>
 	</table>
 	
-	<table border="1" width="80%" align="center">
+	<table class='table' >
 		<tr>
 			<td>
-				<input type="button" id="iBtn" name="iBtn" value="저장하기">
+				<input type="button" id="iBtn" name="iBtn" value="저장하기" class="btn btn-xs btn-primary">
+				<input type="button" id="mm" name="mm" class="btn btn-xs btn-primary" data-toggle="" data-target="" value="멜로보내기">
 			</td>
 		</tr>
 	</table>
+	
+	
+
 </form>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+       	<div class="input-group">
+  			<span class="input-group-addon" id="basic-addon1">@</span>
+  				<input type="text" id=aaa name=aaa class="form-control" placeholder="제목" aria-describedby="basic-addon1">
+		</div>
+		 <div class="input-group">
+  			<span class="input-group-addon" id="basic-addon1">@</span>
+  			<input type="email" id=bbb name=bbb class="form-control" placeholder="메일" aria-describedby="basic-addon1">
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <input  type="button" id="saveBtn" class="btn btn-primary" value="저장하기" data-dismiss="">
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
