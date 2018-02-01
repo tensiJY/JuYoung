@@ -94,6 +94,8 @@
 		<td><input type="button" id="wBtn" name="wBtn" value="업무보고서"></td>
 	</tr>
 </table>
+
+<a href="" onclick="window.open(this.href,'','');">asdf</a>
 <br>  
 </body>
 </html>

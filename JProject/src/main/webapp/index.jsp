@@ -16,6 +16,10 @@
 			$("#join").on('click', function(){
 				$(location).attr('href', './User/JoinForm.park');
 			});
+			
+			$('#file').on('click', function(){
+				$(location).attr('href', './FileBoard/List.park');
+			});
 		})
 		
 	</script>
@@ -27,12 +31,16 @@
 	<a href="#" id="login">로그인</a><br>
 	<a href="#" id="join">회원가입</a>
 </c:if>
+<br>
+<a href='#' id='file'>파일게시판</a>
+<br>
 <c:if test="${not empty sessionScope.USER}">
 	<a href="./User/Logout.park">로그아웃</a><br>
 	<a href="./Message/MessageList.park">메시지</a>
 </c:if>
 <br>
 	<!-- <a href="./HwpEx.jsp">a</a> -->
-	<a href="./Report/List.park">보고서</a>
+	<a href="./Report/List.park">보고서</a> 
+	
 </body>
 </html>

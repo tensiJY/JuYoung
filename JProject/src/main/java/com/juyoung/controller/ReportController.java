@@ -53,6 +53,7 @@ public class ReportController {
 			) throws Exception{
 		
 		
+		
 		int totalCount = rs.getTotalCount();
 		
 		if(totalCount == 0){

@@ -111,4 +111,6 @@ public class UserController {
 		}
 		
 	}// joinProc method end
+
+	
 }

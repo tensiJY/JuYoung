@@ -19,8 +19,9 @@
 		$(function(){
 			// 글쓰기 폼
 			$('input[name=wBtn]').on('click', function(){
-				
+				$(location).attr('href', '../FileBoard/Form.park?nowPage=${MAP.nowPage}'); 
 			});
+			
 		});
 	</script>
 </head>
@@ -29,17 +30,20 @@
 
 <%-- 리스트 --%>
 
+<table class="table">
+
+</table>
 <%-- 페이징 --%>
 
 <%-- 파일쓰기 --%>
 <table class="table">
 	<tbody>
 		<tr>
-			<td><input type="button" id="wBtn" name="wBtn" value="파일폼" class="btn btn-primary"></td>
+			<td>
+				<input type="button" id="wBtn" name="wBtn" value="파일폼" class="btn btn-primary">
+			</td>
 		</tr>
 	</tbody>
 </table>
-
-<input type="hidden" id="nowPage" name="nowPage" value="${MAP.nowPage}">
 </body>
 </html>
